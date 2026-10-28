@@ -29,7 +29,7 @@ const LENGTH_HINTS: Record<BioLength, string> = {
  * enters the client bundle: *.functions.ts modules ship top-level imports.
  */
 export const generateBio = createServerFn({ method: "POST" })
-  .inputValidator((input: BioInput): BioInput => input)
+  .validator((input: BioInput): BioInput => input)
   .handler(async ({ data }): Promise<BioResult> => {
     const { generateResponse, GatewayError } = await import(
       "@lovable.dev/ai-gateway"
