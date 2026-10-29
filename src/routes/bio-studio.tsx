@@ -1,4 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useState } from "react";
+
+import { generateBio, type BioLength, type BioVoice } from "@/lib/bio.functions";
 
 export const Route = createFileRoute("/bio-studio")({
   head: () => ({
