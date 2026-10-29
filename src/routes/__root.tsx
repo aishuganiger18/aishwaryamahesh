@@ -78,8 +78,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bio Studio" },
-      { name: "description", content: "Draft a polished portfolio bio with AI from your skills, experience and preferred tone." },
+      { title: "Aishwarya Mahesh Teli | Portfolio" },
+      { name: "description", content: "Portfolio of Aishwarya Mahesh Teli — Computer Science & Design Undergraduate and Full Stack Developer." },
       { name: "author", content: "Bio Studio" },
       { property: "og:title", content: "Bio Studio" },
       { property: "og:description", content: "Draft a polished portfolio bio with AI from your skills, experience and preferred tone." },
