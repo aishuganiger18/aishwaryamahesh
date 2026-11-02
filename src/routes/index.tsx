@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import portraitAsset from "@/assets/aishwarya-portrait.jpg.asset.json";
+import nammaCertificateAsset from "@/assets/namma-software-testing-workshop-certificate.pdf.asset.json";
 import portfolioCss from "@/styles/portfolio.css?url";
 
 export const Route = createFileRoute("/")({
@@ -499,6 +500,14 @@ function Portfolio() {
                     <p className="cert-issuer">NAMMA (2026)</p>
                   </div>
                 </div>
+                <a
+                  href={nammaCertificateAsset.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                >
+                  <i className="fa-solid fa-award"></i> View Certificate
+                </a>
               </div>
 
               {/* Cert 4 */}
