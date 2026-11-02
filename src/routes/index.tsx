@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 
 import portraitAsset from "@/assets/aishwarya-portrait.jpg.asset.json";
 import nammaCertificateAsset from "@/assets/namma-software-testing-workshop-certificate.pdf.asset.json";
+import elevanceCertificateAsset from "@/assets/elevance-internship-certificate.pdf.asset.json";
+import ivisCertificateAsset from "@/assets/ivis-internship-certificate.pdf.asset.json";
+import codewarzCertificateAsset from "@/assets/codewarz-hackathon-certificate.pdf.asset.json";
 import portfolioCss from "@/styles/portfolio.css?url";
 
 export const Route = createFileRoute("/")({
@@ -272,7 +275,7 @@ function Portfolio() {
                 </ul>
                 <div className="card-footer">
                   <a
-                    href="#"
+                    href={elevanceCertificateAsset.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline btn-sm"
@@ -306,7 +309,7 @@ function Portfolio() {
                 </ul>
                 <div className="card-footer">
                   <a
-                    href="#"
+                    href={ivisCertificateAsset.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline btn-sm"
@@ -476,6 +479,14 @@ function Portfolio() {
                     <p className="cert-issuer">Elevance Skills</p>
                   </div>
                 </div>
+                <a
+                  href={elevanceCertificateAsset.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                >
+                  <i className="fa-solid fa-award"></i> View Certificate
+                </a>
               </div>
 
               {/* Cert 2 */}
@@ -489,6 +500,14 @@ function Portfolio() {
                     <p className="cert-issuer">IVIS Labs</p>
                   </div>
                 </div>
+                <a
+                  href={ivisCertificateAsset.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                >
+                  <i className="fa-solid fa-award"></i> View Certificate
+                </a>
               </div>
 
               {/* Cert 3 */}
@@ -525,7 +544,7 @@ function Portfolio() {
                   </div>
                 </div>
                 <a
-                  href="#"
+                  href={codewarzCertificateAsset.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline btn-sm"
