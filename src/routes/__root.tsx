@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Aishwarya Mahesh Teli | Portfolio" },
       { name: "description", content: "Portfolio of Aishwarya Mahesh Teli — Computer Science & Design Undergraduate and Full Stack Developer." },
-      { name: "author", content: "Bio Studio" },
+      { name: "author", content: "Aishwarya Mahesh Teli" },
       { property: "og:title", content: "Aishwarya Mahesh Teli | Portfolio" },
       { property: "og:description", content: "Portfolio of Aishwarya Mahesh Teli — Computer Science & Design Undergraduate and Full Stack Developer." },
       { property: "og:type", content: "website" },
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
