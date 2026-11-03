@@ -47,8 +47,17 @@ html {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
+  position: relative;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 10% 0%, rgba(99, 102, 241, 0.22), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 95% 30%, rgba(236, 72, 153, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(56, 189, 248, 0.12), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
 }
 
 section {
@@ -82,7 +91,7 @@ section {
 }
 
 .bg-alt {
-  background-color: var(--bg-secondary);
+  background-color: rgba(18, 24, 36, 0.55);
 }
 
 /* ==========================================================
@@ -187,6 +196,7 @@ section {
    ========================================================== */
 .navbar {
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   z-index: 100;
   background: rgba(11, 15, 23, 0.85);
@@ -203,9 +213,10 @@ section {
 }
 
 .brand-logo {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-family: "Great Vibes", cursive;
+  font-size: 1.9rem;
+  font-weight: 400;
+  white-space: nowrap;
   color: var(--text-primary);
 }
 
@@ -746,3 +757,36 @@ section {
     text-align: center;
   }
 }
+
+/* ==========================================================
+   Cursive accents, hero polish, GitHub contributions
+   ========================================================== */
+.section-tag { font-family: "Dancing Script", cursive; font-size: 1.35rem; text-transform: none; letter-spacing: 0; font-weight: 700; }
+.hero-section { position: relative; min-height: calc(100vh - 65px); display: flex; align-items: center; overflow: hidden; }
+.hero-glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 25% 50%, rgba(99, 102, 241, 0.28), transparent 40%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.16), transparent 35%); }
+.hero-container { position: relative; }
+.hero-image-wrapper::before { content: ""; position: absolute; inset: -10px; border-radius: 26px;
+  background: conic-gradient(from 0deg, #6366f1, #ec4899, #38bdf8, #6366f1); filter: blur(18px); opacity: 0.55; z-index: -1; animation: spin-glow 8s linear infinite; }
+@keyframes spin-glow { to { transform: rotate(360deg); } }
+.eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; align-self: flex-start; padding: 0.35rem 0.85rem; border-radius: 9999px; background: var(--accent-subtle); border: 1px solid var(--border-accent); font-size: 0.75rem; margin-bottom: 1.25rem; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2); }
+.hero-hello { font-family: "Dancing Script", cursive; font-size: 1.6rem; color: var(--text-secondary); }
+.hero-name { font-size: 3.4rem; }
+.hero-name-script { font-family: "Great Vibes", cursive; font-weight: 400; font-size: 1.35em; background: linear-gradient(90deg, #a5b4fc, #f0abfc, #7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 0.15em; }
+.contrib-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.75rem; max-width: 900px; margin: 0 auto; }
+.contrib-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.contrib-user { font-weight: 600; display: inline-flex; gap: 0.5rem; align-items: center; }
+.contrib-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
+.contrib-grid { display: flex; gap: 3px; width: max-content; margin: 0 auto; }
+.contrib-week { display: flex; flex-direction: column; gap: 3px; }
+.contrib-cell { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.contrib-cell.empty { background: transparent; }
+.lvl-0 { background: rgba(255, 255, 255, 0.06); }
+.lvl-1 { background: rgba(99, 102, 241, 0.35); }
+.lvl-2 { background: rgba(99, 102, 241, 0.55); }
+.lvl-3 { background: rgba(99, 102, 241, 0.8); }
+.lvl-4 { background: #a5b4fc; }
+.contrib-legend { display: flex; align-items: center; justify-content: flex-end; gap: 4px; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; }
+.contrib-msg { color: var(--text-muted); font-size: 0.9rem; }
+@media (max-width: 868px) { .eyebrow { align-self: center; } .hero-name { font-size: 2.4rem; } .brand-logo { font-size: 1.5rem; } }

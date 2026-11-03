@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import portraitAsset from "@/assets/aishwarya-portrait.jpg.asset.json";
@@ -79,7 +79,7 @@ function Portfolio() {
       <header className="navbar">
         <div className="container nav-container">
           <a href="#hero" className="brand-logo">
-            AMT<span>.</span>
+            Aishwarya Mahesh Teli<span>.</span>
           </a>
           <button
             className="nav-toggle"
@@ -100,9 +100,6 @@ function Portfolio() {
                 {item.label}
               </a>
             ))}
-            <Link to="/bio-studio" className="nav-link">
-              Bio Studio
-            </Link>
             <a href="#contact" className="nav-link btn-nav">
               Contact
             </a>
@@ -113,6 +110,7 @@ function Portfolio() {
       <main>
         {/* Hero / About Section */}
         <section className="section hero-section" id="hero">
+          <div className="hero-glow" aria-hidden="true"></div>
           <div className="container hero-container">
             <div className="hero-image-wrapper fade-in">
               <img
@@ -122,8 +120,11 @@ function Portfolio() {
               />
             </div>
             <div className="hero-content fade-in" id="about">
-              <span className="eyebrow">Welcome to my portfolio</span>
-              <h1 className="hero-name">Aishwarya Mahesh Teli</h1>
+              <span className="eyebrow"><span className="status-dot"></span>Open to software internships</span>
+              <span className="hero-hello">Hello, I'm</span>
+              <h1 className="hero-name">
+                <span className="hero-name-script">Aishwarya</span> Mahesh Teli
+              </h1>
               <p className="hero-tagline">
                 Computer Science &amp; Design Undergraduate | Full Stack
                 Developer
@@ -137,7 +138,12 @@ function Portfolio() {
               </p>
 
               <div className="hero-actions">
-                <a href="resume.pdf" download className="btn btn-primary">
+                <a
+                  href="https://drive.google.com/file/d/1NxM7Ii2wj66tRo2DTZkmydA4hBMl_61-/view?usp=drivesdk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
                   <i className="fa-solid fa-file-arrow-down"></i> Download
                   Resume
                 </a>
@@ -350,15 +356,6 @@ function Portfolio() {
                   >
                     <i className="fa-brands fa-github"></i> GitHub
                   </a>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm"
-                  >
-                    <i className="fa-solid fa-arrow-up-right-from-square"></i>{" "}
-                    Live Demo
-                  </a>
                 </div>
               </div>
 
@@ -380,20 +377,13 @@ function Portfolio() {
                   >
                     <i className="fa-brands fa-github"></i> GitHub
                   </a>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary btn-sm"
-                  >
-                    <i className="fa-solid fa-arrow-up-right-from-square"></i>{" "}
-                    Live Demo
-                  </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        <GitHubContributions />
 
         {/* Skills & Languages Section */}
         <section className="section bg-alt" id="skills">
@@ -631,5 +621,74 @@ function Portfolio() {
         </div>
       </footer>
     </div>
+  );
+}
+
+type ContributionDay = { date: string; count: number; level: number };
+
+function GitHubContributions() {
+  const [days, setDays] = useState<ContributionDay[] | null>(null);
+  const [total, setTotal] = useState<number | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    fetch("https://github-contributions-api.jogruber.de/v4/aishuganiger18?y=last")
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        return r.json();
+      })
+      .then((data: { contributions: ContributionDay[]; total: Record<string, number> }) => {
+        setDays(data.contributions);
+        setTotal(Object.values(data.total).reduce((a, b) => a + b, 0));
+      })
+      .catch(() => setFailed(true));
+  }, []);
+
+  const weeks: ContributionDay[][] = [];
+  if (days) {
+    const firstDow = new Date(days[0]?.date ?? Date.now()).getDay();
+    const padded: (ContributionDay | null)[] = [...Array(firstDow).fill(null), ...days];
+    for (let i = 0; i < padded.length; i += 7) weeks.push(padded.slice(i, i + 7) as ContributionDay[]);
+  }
+
+  return (
+    <section className="section" id="github">
+      <div className="container">
+        <div className="section-header fade-in is-visible">
+          <span className="section-tag">Open Source</span>
+          <h2 className="section-title">GitHub Contributions</h2>
+        </div>
+        <div className="contrib-card">
+          <div className="contrib-top">
+            <a href="https://github.com/aishuganiger18" target="_blank" rel="noopener noreferrer" className="contrib-user">
+              <i className="fa-brands fa-github"></i> @aishuganiger18
+            </a>
+            {total !== null && <span className="badge badge-accent">{total} contributions in the last year</span>}
+          </div>
+          {failed && <p className="contrib-msg">Couldn't load contributions right now.</p>}
+          {!days && !failed && <p className="contrib-msg">Loading contributions…</p>}
+          {days && (
+            <div className="contrib-scroll">
+              <div className="contrib-grid">
+                {weeks.map((week, wi) => (
+                  <div key={wi} className="contrib-week">
+                    {week.map((d, di) =>
+                      d ? (
+                        <span key={di} className={`contrib-cell lvl-${d.level}`} title={`${d.count} contributions on ${d.date}`} />
+                      ) : (
+                        <span key={di} className="contrib-cell empty" />
+                      ),
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="contrib-legend">
+            Less {[0, 1, 2, 3, 4].map((l) => <span key={l} className={`contrib-cell lvl-${l}`} />)} More
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
