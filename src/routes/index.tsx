@@ -646,7 +646,7 @@ function GitHubContributions() {
 
   const weeks: ContributionDay[][] = [];
   if (days) {
-    const firstDow = new Date(days[0].date).getDay();
+    const firstDow = new Date(days[0]?.date ?? Date.now()).getDay();
     const padded: (ContributionDay | null)[] = [...Array(firstDow).fill(null), ...days];
     for (let i = 0; i < padded.length; i += 7) weeks.push(padded.slice(i, i + 7) as ContributionDay[]);
   }
