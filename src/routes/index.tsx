@@ -122,9 +122,7 @@ function Portfolio() {
             <div className="hero-content fade-in" id="about">
               <span className="eyebrow"><span className="status-dot"></span>Open to software internships</span>
               <span className="hero-hello">Hello, I'm</span>
-              <h1 className="hero-name">
-                <span className="hero-name-script">Aishwarya</span> Mahesh Teli
-              </h1>
+              <h1 className="hero-name">Aishwarya Mahesh Teli</h1>
               <p className="hero-tagline">
                 Computer Science &amp; Design Undergraduate | Full Stack
                 Developer
